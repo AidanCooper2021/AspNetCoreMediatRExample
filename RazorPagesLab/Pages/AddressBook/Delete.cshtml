@@ -1,0 +1,36 @@
+@page
+@model DeleteModel
+@{
+	ViewData["Title"] = "Delete Address Book Entry";
+}
+
+<style>
+	.validation-summary-valid { display: none; }
+</style>
+
+<h1>Are you certain you want to delete this entry?</h1>
+
+<!-- Display the DeleteEntryRequest details -->
+<p>
+    @Model.DeleteAddressRequest.Line1 <br>
+    @Model.DeleteAddressRequest.Line2 <br>
+    @Model.DeleteAddressRequest.City, @Model.DeleteAddressRequest.State 
+    @Model.DeleteAddressRequest.PostalCode
+</p>
+
+<form asp-page="Delete"
+    method="post">
+    <!-- Invisible fields to pass the DeleteAddressRequest details -->
+    <input type="hidden" asp-for="DeleteAddressRequest.Id" />
+    <input type="hidden" asp-for="DeleteAddressRequest.Line1" />
+    <input type="hidden" asp-for="DeleteAddressRequest.Line2" />
+    <input type="hidden" asp-for="DeleteAddressRequest.City" />
+    <input type="hidden" asp-for="DeleteAddressRequest.State" />
+    <input type="hidden" asp-for="DeleteAddressRequest.PostalCode" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Yes, delete
+    </button>
+</form>
+
